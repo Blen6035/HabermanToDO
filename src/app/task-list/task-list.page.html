@@ -1,0 +1,30 @@
+
+<ion-header>
+  <ion-toolbar class="background">
+    <ion-title color="light">Get Busy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding  *ngFor="let task of tasks" #slidingItem>
+      <ion-checkbox color="success" (click)="markAsDone(task)"></ion-checkbox>
+      <ion-item [ngClass]="{taskDone: task.status == 'done'}">{{task.title}}</ion-item>
+      <ion-item-options slot="end" (ionSwipe)="removeTask(slidingItem, task)">
+        <button ion-button icon-only expandable color="danger" (click)="removeTask(slidingItem,task)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="addItem()" color="dark">
+              <ion-icon slot="icon-only" name="add-circle" color="warning"></ion-icon>Add Item
+            </ion-button>
+          </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
