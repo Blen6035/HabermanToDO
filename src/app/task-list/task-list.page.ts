@@ -29,7 +29,7 @@ export class TaskListPage implements OnInit {
       header: 'Add a Task',
       message: 'Please enter a Task',
       inputs: [{
-         name: 'task',
+         name: 'title',
          type: 'text'
       }],
       buttons:[{
@@ -39,7 +39,7 @@ export class TaskListPage implements OnInit {
         text: 'Add Task',
         handler: data => {
           let newTaskRef = this.taskList.push(
-            { id: '', title: data.newTask, status: 'open' }
+            { id: '', title: data.title, status: 'open' }
             );
             newTaskRef.update( { id: newTaskRef.key } );
           

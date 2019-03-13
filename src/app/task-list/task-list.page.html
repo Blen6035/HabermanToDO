@@ -7,7 +7,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding  *ngFor="let task of tasks" #slidingItem>
+    <ion-item-sliding *ngFor="let task of tasks | async"#slidingItem>
       <ion-checkbox color="success" (click)="markAsDone(task)"></ion-checkbox>
       <ion-item [ngClass]="{taskDone: task.status == 'done'}">{{task.title}}</ion-item>
       <ion-item-options slot="end" (ionSwipe)="removeTask(slidingItem, task)">
