@@ -16,7 +16,7 @@ export class TaskListPage implements OnInit {
   
   constructor(
     public alertCtrl: AlertController, 
-    //public toastCtrl: ToastController, 
+    public toastCtrl: ToastController, 
     public af: AngularFireDatabase) { 
       this.taskList = this.af.list('/tasks');
       this.tasks = this.taskList.valueChanges();
@@ -42,10 +42,18 @@ export class TaskListPage implements OnInit {
             { id: '', title: data.title, status: 'open' }
             );
             newTaskRef.update( { id: newTaskRef.key } );
+            toast.present();
           
         }
       }]
     })
+
+    let toast = await this.toastCtrl.create({
+      message: "Task Added!",
+      duration: 2000,
+      showCloseButton: false,
+      color: 'dark'
+    });
 
     await addItem.present();
   }
